@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.show-grid{
+  border: 1px solid rgba(86,61,124,.2);
+  background-color: rgba(86,61,124,.15);
+}
+
+.inbox-header{
+  font-size: 1.2em;
+}
+
+.email{
+  border-top: 1px solid rgba(86,61,124,.2);
+}
+
+.email-background{
+  background-color: #f5f5f5;
+  padding-top:1em;
+  padding-bottom:1em;
+  min-height:500px;
+}
+
+.email-title{
+  font-size: 1.5em;
+  font-family: sans-serif;
+  text-decoration: underline;
+}
+
+.email-content{
+  background-color: white;
+}
+
+.email-subject{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.email-preview{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.4;
+}
+.email:hover{
+  box-shadow: 10px 10px 5px grey;
+}
+.email-list{
+  padding-bottom:1em;
+  cursor: pointer;
+  min-height:500px;
+}
+.placeholder-email-content{
+  text-align: center;
+}
