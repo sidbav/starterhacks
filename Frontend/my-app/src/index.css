@@ -11,10 +11,19 @@ body {
 
 .inbox-header{
   font-size: 1.2em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(86,61,124,.2);
+
 }
 
 .email{
-  border-top: 1px solid rgba(86,61,124,.2);
+  padding-top: 1em;
+  padding-right: 2em;
+  padding-left: 2em;
+  border-bottom: 1px solid rgba(86,61,124,.2);
+  min-height: 75px;
 }
 
 .email-background{
