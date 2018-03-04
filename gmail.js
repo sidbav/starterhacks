@@ -126,13 +126,16 @@ function getEmail(auth, messageId){
             let from = response.payload.headers.find((header) => header.name === 'From').value;
             let to = response.payload.headers.find((header) => header.name === 'To').value;
             let subject = response.payload.headers.find((header) => header.name === 'Subject').value;
+            let internalDate = response.internalDate;
             // console.log(response.payload.headers);
             //the object returned, each email with their data
+            // console.log(response.payload.parts[0]);
             resolve({
                 subject: subject,
                 from: from,
                 to: to,
                 date: date,
+                internalDate: internalDate,
                 bodyText: bodyText,
                 actionable: 'yes'
             });
