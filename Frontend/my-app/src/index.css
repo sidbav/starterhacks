@@ -21,6 +21,7 @@ body {
   background-color: #f5f5f5;
   padding-top:1em;
   padding-bottom:1em;
+  min-height:500px;
 }
 
 .email-title{
@@ -52,6 +53,7 @@ body {
 .email-list{
   padding-bottom:1em;
   cursor: pointer;
+  min-height:500px;
 }
 .placeholder-email-content{
   text-align: center;
