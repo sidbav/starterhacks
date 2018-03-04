@@ -101,8 +101,6 @@ module.exports.getAllEmails = (auth) => {
              //hit the api synchronously and get all the emails of the user
              Promise.all(allEmailsPromises)
              .then((responseList) => {
-                 responseList[0].actionable = 'no';
-                 responseList[1].actionable = 'no';
                  resolve(responseList);
              });
          })
@@ -121,15 +119,20 @@ function getEmail(auth, messageId){
                 reject ('The API returned an error' + err);
             }
             //need also subject, sender, text, receiver, cc, bcc
-            let bodyText = base64url.decode(response.payload.parts[0].body.data);
+            let bodyText = response.snippet;
             let date = response.payload.headers.find((header) => header.name === 'Date').value;
             let from = response.payload.headers.find((header) => header.name === 'From').value;
             let to = response.payload.headers.find((header) => header.name === 'To').value;
             let subject = response.payload.headers.find((header) => header.name === 'Subject').value;
             let internalDate = response.internalDate;
-            // console.log(response.payload.headers);
-            //the object returned, each email with their data
-            // console.log(response.payload.parts[0]);
+            if(response.payload.body.data){
+                bodyText = base64url.decode(response.payload.body.data);
+            }else if(response.payload.parts){
+                bodyText = base64url.decode(response.payload.parts[0].body.data);
+            }else{
+                reject(new Error('payload not there'));
+            }
+
             resolve({
                 subject: subject,
                 from: from,
@@ -139,6 +142,10 @@ function getEmail(auth, messageId){
                 bodyText: bodyText,
                 actionable: 'yes'
             });
+            // console.log(response.payload.headers);
+            //the object returned, each email with their data
+            // console.log(response.payload.parts[0]);
+
         });
     });
 }

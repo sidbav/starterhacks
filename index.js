@@ -40,5 +40,8 @@ app.get('/', (req, res) => {
             .then((emailObjects) => {
                 res.send(emailObjects);
             });
+    })
+    .catch((err)=>{
+        console.log(err);
     });
 });
