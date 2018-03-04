@@ -2,6 +2,8 @@ var fs = require('fs');
 var readline = require('readline');
 var {google} = require('googleapis');
 var googleAuth = require('google-auth-library');
+var base64url = require('base64url');
+
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/gmail-nodejs-quickstart.json
@@ -9,6 +11,40 @@ var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'gmail-nodejs-quickstart.json';
+
+/**
+ * returns oauth2client
+ *
+ */
+module.exports.authorize = () => {
+    return new Promise ((resolve, reject) => {
+        // Load client secrets from a local file.
+        fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+            if (err) {
+                console.log('Error loading client secret file: ' + err);
+                reject(new Error('Error loading client secret file: ' + err));
+            }
+            let credentials = JSON.parse(content);
+            let clientSecret = credentials.installed.client_secret;
+            let clientId = credentials.installed.client_id;
+            let redirectUrl = credentials.installed.redirect_uris[0];
+            let auth = new googleAuth();
+            let oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+
+            // Check if we have previously stored a token.
+            fs.readFile(TOKEN_PATH, function(err, token) {
+                if (err) {
+                    getNewToken(oauth2Client).then((o2Client)=>{
+                        resolve(o2Client);
+                    });
+                } else {
+                    oauth2Client.credentials = JSON.parse(token);
+                    resolve(oauth2Client);
+                }
+            });
+        });
+    });
+}
 
 /**
 * Lists the labels in the user's account.
@@ -27,12 +63,13 @@ module.exports.listLabels = (auth) => {
             }
             var labels = response.labels;
             if (labels.length == 0) {
-                console.log('No labels found.');
+                resolve('No labels found.');
             } else {
-                let labelStr = "Labels: ";
-                for (var i = 0; i < labels.length; i++) {
-                    var label = labels[i];
-                    labelStr += `- ${label.name}`;
+                let labelStr = "Labels:";
+                for (let i = 0; i < labels.length; i++) {
+                    let label = labels[i];
+                    console.log(`${label.name}`);
+                    labelStr += `\n - ${label.name}`;
                 }
                 resolve(labelStr);
             }
@@ -40,35 +77,60 @@ module.exports.listLabels = (auth) => {
     });
 }
 
-/**
- * returns oauth2client
- *
- */
-module.exports.authorize = () => {
+module.exports.getAllEmails = (auth) => {
     return new Promise ((resolve, reject) => {
-        // Load client secrets from a local file.
-        fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-            if (err) {
-                console.log('Error loading client secret file: ' + err);
-                reject(new Error('Error loading client secret file: ' + err));
-            }
-            var credentials = JSON.parse(content);
-            var clientSecret = credentials.installed.client_secret;
-            var clientId = credentials.installed.client_id;
-            var redirectUrl = credentials.installed.redirect_uris[0];
-            var auth = new googleAuth();
-            var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+        let gmail = google.gmail('v1');
+         gmail.users.messages.list({
+             auth: auth,
+             userId: 'me'
+             //no query
+             //no page token
+         }, function(err, response){
+             if (err) {
+                 reject ('The API returned an error' + err);
+             }
 
-            // Check if we have previously stored a token.
-            fs.readFile(TOKEN_PATH, function(err, token) {
-                if (err) {
-                    getNewToken(oauth2Client).then((o2Client)=>{
-                        resolve(o2Client);
-                    });
-                } else {
-                    oauth2Client.credentials = JSON.parse(token);
-                    resolve(oauth2Client);
-                }
+             let allEmailsPromises = [];
+
+             //get all the promises for each email listed
+             response.messages.forEach((message)=>{
+                 allEmailsPromises.push(getEmail(auth, message.id));
+             });
+
+             //hit the api synchronously and get all the emails of the user
+             Promise.all(allEmailsPromises)
+             .then((responseList) => {
+                 resolve(responseList);
+             });
+         })
+    });
+}
+
+function getEmail(auth, messageId){
+    return new Promise((resolve, reject) =>{
+        let gmail = google.gmail('v1');
+        gmail.users.messages.get({
+            auth: auth,
+            userId: 'me',
+            id: messageId
+        }, function (err, response){
+            if (err) {
+                reject ('The API returned an error' + err);
+            }
+            //need also subject, sender, text, receiver, cc, bcc
+            let bodyText = base64url.decode(response.payload.parts[0].body.data);
+            let date = response.payload.headers.find((header) => header.name === 'Date').value;
+            let from = response.payload.headers.find((header) => header.name === 'From').value;
+            let to = response.payload.headers.find((header) => header.name === 'To').value;
+            let subject = response.payload.headers.find((header) => header.name === 'Subject').value;
+            // console.log(response.payload.headers);
+            //the object returned, each email with their data
+            resolve({
+                subject: subject,
+                from: from,
+                to: to,
+                date: date,
+                bodyText: bodyText
             });
         });
     });

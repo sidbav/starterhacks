@@ -12,7 +12,11 @@ var app = express(); //module.exports = express.createServer();
 app.listen(port, () => console.log(`port is: ${port}!`));
 
 app.get('/', (req, res) => {
-    gmail.authorize().then((oauth2)=>{
-        res.send(gmail.listLabels(oauth2));
+    gmail.authorize()
+    .then((oauth2)=>{
+        return gmail.getAllEmails(oauth2);
+    })
+    .then((emailObjects) => {
+        res.send(emailObjects);
     });
 });
