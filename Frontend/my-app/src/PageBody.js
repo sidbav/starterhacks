@@ -66,7 +66,7 @@ class PageBody extends Component{
           <div className = "email-list">
             <Row>
               <div className = "inbox-header">
-                 INBOX:
+                 INBOX
               </div>
             </Row>
             <Row>

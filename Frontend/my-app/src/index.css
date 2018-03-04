@@ -2,26 +2,41 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: rgba(86,61,124,.15);
 }
 
 .show-grid{
   border: 1px solid rgba(86,61,124,.2);
-  background-color: rgba(86,61,124,.15);
+  background-color: #ffffff;
 }
 
 .inbox-header{
   font-size: 1.2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  border-bottom: 1px solid rgba(86,61,124,.2);
+
 }
 
 .email{
-  border-top: 1px solid rgba(86,61,124,.2);
+  border-bottom: 1px solid rgba(86,61,124,.2);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.email-header{
+    border-bottom: 1px solid rgba(86,61,124,.2);
+    padding-bottom: 0.3em;
 }
 
 .email-background{
-  background-color: #f5f5f5;
-  padding-top:1em;
-  padding-bottom:1em;
-  min-height:500px;
+  min-height: 500px;
+  border-bottom: 1px solid rgba(86,61,124,.2);
+  border-right: 1px solid rgba(86,61,124,.2);
+  border-top: 1px solid rgba(86,61,124,.2);
+
 }
 
 .email-title{
@@ -30,8 +45,21 @@ body {
   text-decoration: underline;
 }
 
+.email-header-item{
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
 .email-content{
-  background-color: white;
+  background-color: white;;
+  min-width: 70px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
+}
+
+.email-body{
+    padding-top: 2em;
 }
 
 .email-subject{
@@ -39,6 +67,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
+
 }
 
 .email-preview{
@@ -46,9 +75,10 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   opacity: 0.4;
+
 }
 .email:hover{
-  box-shadow: 10px 10px 5px grey;
+  box-shadow: 4px 0 3px grey;
 }
 .email-list{
   padding-bottom:1em;

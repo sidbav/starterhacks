@@ -14,9 +14,7 @@ class EmailList extends Component{
       for (let i=0; i<data.length;i++)
         renderData.push(
           <Row>
-            <Col sm = {1} md = {1} lg = {1}>
-            </Col>
-            <Col sm = {10} md = {10} lg ={10}>
+            <Col sm = {12} md = {12} lg ={12}>
               <div className = "email"
                 onClick = {()=>{this.props.handleClick(data[i])}}>
                 <div className = "email-subject">
@@ -26,8 +24,6 @@ class EmailList extends Component{
                   {data[i].bodyText}
                 </div>
               </div>
-            </Col>
-            <Col sm = {1} md = {1} lg = {1}>
             </Col>
           </Row>
         );

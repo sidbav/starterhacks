@@ -7,12 +7,8 @@ class EmailContent extends Component {
     if (!this.props.contentData){
       return(
         <Row className="email-background">
-          <Col sm = {1} md = {1} lg = {1}>
-          </Col>
-          <Col sm = {10} md = {10} lg ={10} className = "email-content">
+        <Col sm = {12} md = {12} lg ={12} className = "email-content">
             <div className = "placeholder-email-content">Click on an email to view it!</div>
-          </Col>
-          <Col sm ={1} md = {1} lg = {1}>
           </Col>
         </Row>
       )
@@ -20,23 +16,31 @@ class EmailContent extends Component {
     else{
       return(
         <Row className="email-background">
-          <Col sm = {1} md = {1} lg = {1}>
-          </Col>
-          <Col sm = {10} md = {10} lg ={10} className = "email-content">
+          <Col sm = {12} md = {12} lg ={12} className = "email-content">
             <div>
               <div className = "email-title">
                 {this.props.contentData.subject}
               </div>
-              <div>
-                To: {this.props.contentData.to}<br></br>
-                From: {this.props.contentData.from}<br></br>
-                {this.props.contentData.date}<br></br><br></br>
-              </div>
+              <div className="email-header">
+                <div className="email-header-item">
+                    To: {this.props.contentData.to}<br></br>
+
+                </div>
+                <div className="email-header-item">
+                    From: {this.props.contentData.from}<br></br>
+
+                </div>
+                <div className="email-header-item">
+                    {this.props.contentData.date}<br></br>
+
+                </div>
+
+                </div>
 
             </div>
+            <div className="email-body">
               {this.props.contentData.bodyText}
-          </Col>
-          <Col sm ={1} md = {1} lg = {1}>
+          </div>
           </Col>
         </Row>
       )
