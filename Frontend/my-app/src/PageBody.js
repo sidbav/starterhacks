@@ -10,10 +10,10 @@ function sortJson(data){
   var nonActionableData = [];
   for(let element in data[0]){
     if(element.actionable === 'yes'){
-      actionableData.push(element)
+      actionableData.push(element);
     }
     else {
-      nonActionableData.push(element)
+      nonActionableData.push(element);
     }
   }
 
