@@ -5,38 +5,29 @@ var Nav = require('react-bootstrap/lib/Nav');
 var NavItem = require('react-bootstrap/lib/NavItem');
 var NavDropdown = require('react-bootstrap/lib/NavDropdown');
 var MenuItem = require('react-bootstrap/lib/MenuItem');
+var logo = require('./urgentai.png');
 
 class Toolbar extends Component{
   render (){
     return(
       <div>
-        <Navbar>
+        <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <img src = "../public/urgentai.png"/>
+            <a href="#">
+        <img src={logo} style={{width:100, marginTop: -7}} />
+        </a>
             </Navbar.Brand>
           </Navbar.Header>
-          <Nav>
-            <NavItem eventKey={1} href="#">
-              Link
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link
-            </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.4}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>
           <Nav pullRight>
-            <NavItem>
+            <NavItem >
               Sign Out
             </NavItem>
           </Nav>
         </Navbar>
+          <Navbar fixedBottom className="footer">
+            <div className="footer-text"> Made with &#9829; at StarterHacks</div>
+          </Navbar>
       </div>
     )
   }

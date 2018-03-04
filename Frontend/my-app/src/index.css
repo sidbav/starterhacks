@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: rgba(86,61,124,.15);
+  background-color: rgba(45,45,45,0.1);
 }
 
 .show-grid{
@@ -10,13 +10,8 @@ body {
   background-color: #ffffff;
 }
 
-.inbox-header{
-  font-size: 1.2em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  text-align: center;
-  border-bottom: 1px solid rgba(86,61,124,.2);
-
+.grid{
+    padding-top: 6em;
 }
 
 .email{
@@ -26,6 +21,21 @@ body {
   padding-left: 2em;
   padding-right: 2em;
 }
+
+.email-actionable{
+    background-color: #ffffe0;
+}
+
+.inbox-header{
+  font-size: 1.2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  border-bottom: 1px solid rgba(86,61,124,.2);
+  font-weight: bold;
+}
+
+
 .email-header{
     border-bottom: 1px solid rgba(86,61,124,.2);
     padding-bottom: 0.3em;
@@ -40,18 +50,20 @@ body {
 }
 
 .email-title{
+  font-weight: bold;
   font-size: 1.5em;
   font-family: sans-serif;
   text-decoration: underline;
 }
 
 .email-header-item{
+    font-weight: bold;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
 }
 
 .email-content{
-  background-color: white;;
+  background-color: white;
   min-width: 70px;
   padding-top: 1em;
   padding-bottom: 1em;
@@ -67,7 +79,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
-
+  font-weight: bold;
 }
 
 .email-preview{
@@ -78,7 +90,7 @@ body {
 
 }
 .email:hover{
-  box-shadow: 4px 0 3px grey;
+  box-shadow: 5px 0 5px grey;
 }
 .email-list{
   padding-bottom:1em;
@@ -87,4 +99,21 @@ body {
 }
 .placeholder-email-content{
   text-align: center;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    font-weight: bold;
+    color: white;
+}
+
+.footer{
+    background-color: #222222;
+    color: white;
+    font-weight: bold;
+
+}
+
+.footer-text{
+    padding-top: 1em;
+    text-align: center;
 }

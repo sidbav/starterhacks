@@ -54,13 +54,14 @@ class PageBody extends Component{
       this.emailData = data;
     }).then( data =>{
       this.emailData = sortJson(this.emailData);
+      this.contentData = this.emailData;
       this.setState({posts:[]})
   })
 }
 
   render(){
     return (
-      <Grid>
+      <Grid className="grid">
         <Row>
           <Col sm ={3} md = {3} lg = {3} className="show-grid">
           <div className = "email-list">
