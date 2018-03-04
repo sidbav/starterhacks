@@ -21,7 +21,7 @@ for w in movie_reviews.words():
 
 all_words = nltk.FreqDist(all_words)
 
-word_features = list(all_words.keys())[:189]
+word_features = list(all_words.keys())[:200]
 
 def find_features(document):
     words = set(document)
@@ -33,8 +33,8 @@ def find_features(document):
 
 featuresets = [(find_features(rev), category) for (rev, category) in documents]
 
-training_set= featuresets[:75]
-testing_set= featuresets[75:]
+training_set= featuresets
+testing_set= featuresets
 
 reviewList = []
 for feature in testing_set:
