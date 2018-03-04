@@ -69,7 +69,6 @@ for w in movie_reviews.words():
 
 all_words = nltk.FreqDist(all_words)
 
-
 word_features = list(all_words.keys())[:3000]
 
 def find_features(document):

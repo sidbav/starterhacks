@@ -23,6 +23,22 @@ app.get('/', (req, res) => {
         return gmail.getAllEmails(oauth2);
     })
     .then((emailObjects) => {
-        res.send(emailObjects);
+        let requestsList = [];
+        emailObjects.forEach(function(email){
+            requestsList.push(new Promise((resolve, reject) =>{
+                request(`https://urgentml.localtunnel.me/?message=${email.bodyText}`, function(error, response, body){
+                    if (error){
+                        reject(error);
+                    }
+                    email.actionable = body;
+                    resolve(email);
+                });
+            }));
+        });
+        Promise
+            .all(requestsList)
+            .then((emailObjects) => {
+                res.send(emailObjects);
+            });
     });
 });
