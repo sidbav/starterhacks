@@ -26,7 +26,6 @@ function sortJson(data){
   })
 
   var returnArray = actionableData.concat(nonActionableData);
-  console.log(returnArray);
   return returnArray
 }
 

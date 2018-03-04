@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 var Navbar = require('react-bootstrap/lib/Navbar');
 var Nav = require('react-bootstrap/lib/Nav');
 var NavItem = require('react-bootstrap/lib/NavItem');
@@ -12,7 +13,7 @@ class Toolbar extends Component{
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <img src = "../public/urgentai.png"></img>
+              <img src = "../public/urgentai.png"/>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
