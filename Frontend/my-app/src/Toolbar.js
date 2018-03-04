@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 var Navbar = require('react-bootstrap/lib/Navbar');
 var Nav = require('react-bootstrap/lib/Nav');
 var NavItem = require('react-bootstrap/lib/NavItem');
-var NavDropdown = require('react-bootstrap/lib/NavDropdown');
-var MenuItem = require('react-bootstrap/lib/MenuItem');
 var logo = require('./urgentai.png');
 
 class Toolbar extends Component{
