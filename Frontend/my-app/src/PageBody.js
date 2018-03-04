@@ -8,43 +8,63 @@ var Col = require('react-bootstrap/lib/Col');
 function sortJson(data){
   var actionableData = []
   var nonActionableData = [];
-  for(let element in data[0]){
+  data.forEach(function(element){
     if(element.actionable === 'yes'){
       actionableData.push(element);
     }
     else {
       nonActionableData.push(element);
     }
-  }
+  })
 
+  actionableData.sort(function(a,b){
+    return a.internalDate-b.internalDate
+  });
 
+  nonActionableData.sort(function(a,b){
+    return a.internalDate-b.internalDate
+  })
 
+  var returnArray = actionableData.concat(nonActionableData);
+  console.log(returnArray);
+  return returnArray
 }
 
 class PageBody extends Component{
   constructor(props){
     super(props);
       this.emailData;
+      this.contentData;
+      this.state={
+        posts:[],
+        update:""
+      }
+      this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillMount(){
+  handleClick(data){
+    this.contentData = data;
+    this.setState({update:""})
+  }
+
+  componentDidMount(){
     fetch('https://email.localtunnel.me/')
     .then(results =>{
       return results.json();
     }).then(data =>{
       this.emailData = data;
-    }).then( =>{
+    }).then( data =>{
       this.emailData = sortJson(this.emailData);
-    }).then( =>{
-      console.log(this.emailData)
-    })
-  }
+      this.setState({posts:[]})
+  })
+}
 
   render(){
     return (
       <Grid>
         <Row>
           <Col sm ={3} md = {3} lg = {3} className="show-grid">
+          <div className = "email-list">
             <Row>
               <div className = "inbox-header">
                  INBOX:
@@ -52,13 +72,15 @@ class PageBody extends Component{
             </Row>
             <Row>
               <EmailList
+                handleClick = {this.handleClick}
                 emailData = {this.emailData}
               />
             </Row>
+          </div>
           </Col>
           <Col sm={9} md = {9} lg = {9}>
             <EmailContent
-              emailData = {this.emailData}
+              contentData = {this.contentData}
             />
           </Col>
         </Row>

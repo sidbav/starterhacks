@@ -12,7 +12,7 @@ class Toolbar extends Component{
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Our Mail App</a>
+              <img src = "../public/urgentai.png"></img>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
