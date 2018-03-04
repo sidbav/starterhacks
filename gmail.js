@@ -16,6 +16,7 @@ var TOKEN_PATH = TOKEN_DIR + 'gmail-nodejs-quickstart.json';
  * returns oauth2client
  *
  */
+
 module.exports.authorize = () => {
     return new Promise ((resolve, reject) => {
         // Load client secrets from a local file.
@@ -130,7 +131,8 @@ function getEmail(auth, messageId){
                 from: from,
                 to: to,
                 date: date,
-                bodyText: bodyText
+                bodyText: bodyText,
+                actionable: 'yes'
             });
         });
     });
