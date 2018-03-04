@@ -101,6 +101,8 @@ module.exports.getAllEmails = (auth) => {
              //hit the api synchronously and get all the emails of the user
              Promise.all(allEmailsPromises)
              .then((responseList) => {
+                 responseList[0].actionable = 'no';
+                 responseList[1].actionable = 'no';
                  resolve(responseList);
              });
          })
