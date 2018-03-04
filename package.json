@@ -1,0 +1,29 @@
+{
+  "name": "starterhacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhuang133/starterhacks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yhuang133/starterhacks/issues"
+  },
+  "homepage": "https://github.com/yhuang133/starterhacks#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^27.0.0",
+    "node-gmail-api": "^0.6.1",
+    "readline": "^1.3.0",
+    "request": "^2.83.0"
+  }
+}
