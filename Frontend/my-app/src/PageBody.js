@@ -5,6 +5,22 @@ var Grid = require('react-bootstrap/lib/Grid');
 var Row = require('react-bootstrap/lib/Row');
 var Col = require('react-bootstrap/lib/Col');
 
+function sortJson(data){
+  var actionableData = []
+  var nonActionableData = [];
+  for(let element in data[0]){
+    if(element.actionable === 'yes'){
+      actionableData.push(element)
+    }
+    else {
+      nonActionableData.push(element)
+    }
+  }
+
+
+
+}
+
 class PageBody extends Component{
   constructor(props){
     super(props);
@@ -17,6 +33,10 @@ class PageBody extends Component{
       return results.json();
     }).then(data =>{
       this.emailData = data;
+    }).then( =>{
+      this.emailData = sortJson(this.emailData);
+    }).then( =>{
+      console.log(this.emailData)
     })
   }
 
