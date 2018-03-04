@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 var Row = require('react-bootstrap/lib/Row');
 var Col = require('react-bootstrap/lib/Col');
+var FormGroup = require('react-boostrap/lib/FormGroup');
+var FormControl = require('react-boostrap/lib/FormControl');
+var ControlLabel = require('react-boostrap/lib/ControlLabel');
+
 
 class EmailContent extends Component {
   render(){
@@ -25,13 +29,17 @@ class EmailContent extends Component {
                         Date: {this.props.contentData[0].date}<br></br>
 
                     </div>
-
-                    </div>
+                </div>
 
                 </div>
                 <div className="email-body">
                   {this.props.contentData[0].bodyText}
               </div>
+              <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Textarea</ControlLabel>
+                    <FormControl componentClass="textarea" placeholder="textarea" />
+                </FormGroup>
+              <button className="reply-button">&#10149; Reply</button>
               </Col>
             </Row>
           )

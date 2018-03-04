@@ -117,3 +117,11 @@ body {
     padding-top: 1em;
     text-align: center;
 }
+
+.reply-button{
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 1em 0.75em 1em 0.75em;
+}
