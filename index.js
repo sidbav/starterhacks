@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
         let requestsList = [];
         emailObjects.forEach(function(email){
             requestsList.push(new Promise((resolve, reject) =>{
-                request(`https://urgentml.localtunnel.me/?message=${email.bodyText}`, function(error, response, body){
+                request(`https://urgentait.localtunnel.me/?message=${email.bodyText}`, function(error, response, body){
                     if (error){
                         reject(error);
                     }

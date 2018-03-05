@@ -18,14 +18,14 @@ function sortJson(data){
   })
 
   actionableData.sort(function(a,b){
-    return a.internalDate-b.internalDate
+    return b.internalDate-a.internalDate
   });
 
   nonActionableData.sort(function(a,b){
-    return a.internalDate-b.internalDate
+    return b.internalDate-a.internalDate
   })
 
-  var returnArray = actionableData.concat(nonActionableData);
+  var returnArray = nonActionableData.concat(actionableData);
   return returnArray
 }
 
@@ -47,7 +47,7 @@ class PageBody extends Component{
   }
 
   componentDidMount(){
-    fetch('https://email.localtunnel.me/')
+    fetch('https://emailt.localtunnel.me/')
     .then(results =>{
       return results.json();
     }).then(data =>{
